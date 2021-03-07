@@ -13,7 +13,7 @@ const countriesListRef = document.querySelector('.countries__list');
 function fetchCountries(searchQuery) {
   return fetch(`${BASE_URL}/${searchQuery}`)
     .then(response => {
-      if (!response.ok) throw new Error('Не найдено');
+      if (response.status == '404') throw new Error('Не найдено');
 
       return response.json();
     })
@@ -28,7 +28,6 @@ function fetchCountries(searchQuery) {
       }
     });
 }
-
 function insertMarkup(value, ref) {
   ref.insertAdjacentHTML('beforeend', value);
 }
